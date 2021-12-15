@@ -6,7 +6,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Create generatePassword(); function/variable
 var generatePassword = function () {
-  window.prompt("i wish i was dead");
+  window.prompt("input here");
 };
 
 // Write password to the #password input
