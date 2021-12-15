@@ -9,6 +9,8 @@ var generatePassword = function () {
   window.prompt("input here");
 };
 
+
+
 // Write password to the #password input
 
 var writePassword = function() {
