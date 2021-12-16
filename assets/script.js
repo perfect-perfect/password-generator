@@ -5,10 +5,16 @@
 var generateBtn = document.querySelector("#generate");
 //var passWordFunction = function () {
 
+var selectCharacter = function () {
+  character
+}
+
 // Create generatePassword(); function/variable
 var generatePassword = function () {
 
   for (i = 0; i > passwordInfo.length; i++) {
+
+    selectCharacter();
 
     console.log(i)
   }
