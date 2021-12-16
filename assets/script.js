@@ -5,7 +5,7 @@
 var generateBtn = document.querySelector("#generate");
 //var passWordFunction = function () {
 
-var selectCharacter = function () {
+var selectCharacters = function (selectedCharacter) {
   character
 }
 
