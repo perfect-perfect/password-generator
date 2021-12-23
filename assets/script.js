@@ -1,5 +1,15 @@
 // Assignment code here
+var upperArr = [
+  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","Y","Z"
+]
 
+var numericArr = [
+  "1","2","3","4","5","6","7","8","9","0"
+]
+
+var specialArr = [
+  "!","#","$","%","*","+","/",":",";","?","@","^","_","`","~"
+]
 
 // This creates a DOM representation of the html element with id="generate". In this case the <button> element
 var generateBtn = document.querySelector("#generate");
@@ -8,7 +18,7 @@ console.log(generateBtn);
 function promptUser() {
   var length = window.prompt("Choose a length between 8 - 128 characters.");
   if (length < 8 || length >128 || length === "" || length === null) {
-    window.alert("You must provide a number value betwwen 8 and 128")
+    window.alert("You must provide a number value between 8 and 128")
 
     return null;
   }
@@ -23,7 +33,7 @@ function promptUser() {
   }
   var passwordInfo = {
     //I have to convert the string value that results from the prompt into a numeric value
-    length,
+    passwordLength,
     lowercase,
     uppercase,
     numeric,
@@ -33,6 +43,14 @@ function promptUser() {
   return passwordInfo;
 }
 function random(array){
+  if (!array.isArray()) {
+    alert("There was an error with random generator")
+  }
+  var randomIndex = Math.floor(Math.random() * array.length);
+
+  var randomEl = array[randomIndex];
+  return randomEl;
+
   // use math.floor and math.random to geta random index 
   // use random index to pick element out of array[randomeindex]
 }
@@ -40,31 +58,37 @@ function random(array){
 function generatePassword() {
   var passwordObj = promptUser();
   console.log(passwordObj);
-  var possibleChar = [];
+  var possibleChars = [];
   var finalPass = []
 
+  if(passwordObj.lowercase === true){
+  //             upperArr.map(function(upperChar){upperChar.toLowerCase()})
+  let lowerArr = upperArr.map(upperChar => upperChar.toLowerCase())
+
+   possibleChars = possibleChars.concat(lowerArr)
+  }
+
   if(passwordObj.uppercase === true){
-   possibleChar = possibleChar.concat(upperArr)
+    possibleChars = possibleChars.concat(upperArr)
   }
-  for (let i = 0; i < passwordObj.length; i++) {
-    var randomChar = random(possibleChar)
-    finalPass.push(randomChar)
-  }
-  return finalPass.join("")
-  // What i create here will ultimately be sent to writePassword and set equal to the variable password
-  //for (var i = 0; i < passwordInfo.length; i++)
-    // this needs to go in the object maybe
-    //if (passwordInfo.length < 8 || passwordInfo.length >128 || passwordInfo.length = "" || passwordInfo.length = null) {
-    //  window.alert("You must provide a number value betwwen 8 and 128")
 
+  if (passwordObj.numeric === true) {
+    possibleChars = possibleChars.concat(numericArr)
     
+  }
 
-    //}
-    // (passwordInfo.lowercase) {
-      //code to select a lower case letter from an array
-    //}
-  // Do I need to do a return here?
-  // having some issue understaning what we do at the end of functions. seems lots of different options. struggling to understand the end of function conceptually.
+  if (passwordObj.special === true) {
+    possibleChars = possibleChars.concat(specialArr)
+
+  }
+
+  for (let i = 0; i < passwordObj.passwordLength; i++) {
+    var randomChar = random(possibleChars);
+    finalPass.push(randomChar);
+  }
+
+  return finalPass.join("")
+  
 };
 // Write password to the #password input
 function writePassword() {
@@ -78,9 +102,7 @@ function writePassword() {
 
 // create array of characters here
 
-var upperArr = [
-  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","Y","Z"
-]
+
 
 
 
